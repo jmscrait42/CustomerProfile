@@ -30,7 +30,7 @@ namespace customerProfile
         }
 
 
-        private Menu[] TransformToMenu(List<GetOverrideResult> menuWithOptions)
+        private static Menu[] TransformToMenu(List<GetOverrideResult> menuWithOptions)
         {
             List<Menu> menus = new List<Menu>(menuWithOptions.Count);
 

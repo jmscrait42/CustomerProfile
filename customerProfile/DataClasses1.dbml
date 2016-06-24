@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CustomerProfile" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=SYDR90G0G20;Initial Catalog=CustomerProfile;Integrated Security=True;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CustomerProfileConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="IVRCPR" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=CHEISQLVHT002;Initial Catalog=IVRCPR;User ID=IVRCPRAdmin;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="IVRCPRConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.GetOverride" Method="GetOverride">
     <Parameter Name="POS" Parameter="pOS" Type="System.String" DbType="NVarChar(3)" />
     <Parameter Name="Itin" Parameter="itin" Type="System.String" DbType="NVarChar(50)" />
     <ElementType Name="GetOverrideResult">
-      <Column Name="MenuTypeName" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="MenuTypeName" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
       <Column Name="MessageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="OptionList" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="OptionList" Type="System.String" DbType="VarChar(19) NOT NULL" CanBeNull="false" />
       <Column Name="RepeatMenu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>

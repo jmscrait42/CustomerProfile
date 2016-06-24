@@ -22,7 +22,7 @@ namespace customerProfile
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CustomerProfile")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="IVRCPR")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,7 +33,7 @@ namespace customerProfile
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CustomerProfileConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["IVRCPRConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -85,7 +85,7 @@ namespace customerProfile
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuTypeName", DbType="VarChar(12) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuTypeName", DbType="VarChar(14) NOT NULL", CanBeNull=false)]
 		public string MenuTypeName
 		{
 			get
@@ -117,7 +117,7 @@ namespace customerProfile
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptionList", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptionList", DbType="VarChar(19) NOT NULL", CanBeNull=false)]
 		public string OptionList
 		{
 			get
