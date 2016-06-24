@@ -13,5 +13,8 @@ namespace customerProfile
     {
         [OperationContract]
         void DoWork();
+
+        [OperationContract]
+        List<GetOverrideResult> GetOverride(string pos, string itin);
     }
 }

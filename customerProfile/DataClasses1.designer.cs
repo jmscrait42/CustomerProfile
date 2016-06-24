@@ -22,6 +22,7 @@ namespace customerProfile
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="CustomerProfile")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,6 +31,12 @@ namespace customerProfile
     #region Extensibility Method Definitions
     partial void OnCreated();
     #endregion
+		
+		public DataClasses1DataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["CustomerProfileConnectionString"].ConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public DataClasses1DataContext(string connection) : 
 				base(connection, mappingSource)
@@ -53,6 +60,93 @@ namespace customerProfile
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetOverride")]
+		public ISingleResult<GetOverrideResult> GetOverride([global::System.Data.Linq.Mapping.ParameterAttribute(Name="POS", DbType="NVarChar(3)")] string pOS, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Itin", DbType="NVarChar(50)")] string itin)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pOS, itin);
+			return ((ISingleResult<GetOverrideResult>)(result.ReturnValue));
+		}
+	}
+	
+	public partial class GetOverrideResult
+	{
+		
+		private string _Type;
+		
+		private int _MessageID;
+		
+		private string _RepeatMenu;
+		
+		private string _Options;
+		
+		public GetOverrideResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this._Type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MessageID", DbType="Int NOT NULL")]
+		public int MessageID
+		{
+			get
+			{
+				return this._MessageID;
+			}
+			set
+			{
+				if ((this._MessageID != value))
+				{
+					this._MessageID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RepeatMenu", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string RepeatMenu
+		{
+			get
+			{
+				return this._RepeatMenu;
+			}
+			set
+			{
+				if ((this._RepeatMenu != value))
+				{
+					this._RepeatMenu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Options", DbType="VarChar(7) NOT NULL", CanBeNull=false)]
+		public string Options
+		{
+			get
+			{
+				return this._Options;
+			}
+			set
+			{
+				if ((this._Options != value))
+				{
+					this._Options = value;
+				}
+			}
 		}
 	}
 }
