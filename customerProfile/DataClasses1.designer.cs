@@ -73,30 +73,30 @@ namespace customerProfile
 	public partial class GetOverrideResult
 	{
 		
-		private string _Type;
+		private string _MenuTypeName;
 		
 		private int _MessageID;
 		
-		private string _RepeatMenu;
+		private string _OptionList;
 		
-		private string _Options;
+		private System.Nullable<bool> _RepeatMenu;
 		
 		public GetOverrideResult()
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Type
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuTypeName", DbType="VarChar(12) NOT NULL", CanBeNull=false)]
+		public string MenuTypeName
 		{
 			get
 			{
-				return this._Type;
+				return this._MenuTypeName;
 			}
 			set
 			{
-				if ((this._Type != value))
+				if ((this._MenuTypeName != value))
 				{
-					this._Type = value;
+					this._MenuTypeName = value;
 				}
 			}
 		}
@@ -117,8 +117,24 @@ namespace customerProfile
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RepeatMenu", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
-		public string RepeatMenu
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OptionList", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string OptionList
+		{
+			get
+			{
+				return this._OptionList;
+			}
+			set
+			{
+				if ((this._OptionList != value))
+				{
+					this._OptionList = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RepeatMenu", DbType="Bit")]
+		public System.Nullable<bool> RepeatMenu
 		{
 			get
 			{
@@ -129,22 +145,6 @@ namespace customerProfile
 				if ((this._RepeatMenu != value))
 				{
 					this._RepeatMenu = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Options", DbType="VarChar(7) NOT NULL", CanBeNull=false)]
-		public string Options
-		{
-			get
-			{
-				return this._Options;
-			}
-			set
-			{
-				if ((this._Options != value))
-				{
-					this._Options = value;
 				}
 			}
 		}

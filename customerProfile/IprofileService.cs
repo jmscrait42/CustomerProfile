@@ -11,10 +11,9 @@ namespace customerProfile
     [ServiceContract]
     public interface IProfileService
     {
-        [OperationContract]
-        void DoWork();
+
 
         [OperationContract]
-        List<GetOverrideResult> GetOverride(string pos, string itin);
+        ProfileService.Menu[] GetOverride(string pos, string itin);
     }
 }

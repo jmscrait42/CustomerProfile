@@ -4,10 +4,10 @@
     <Parameter Name="POS" Parameter="pOS" Type="System.String" DbType="NVarChar(3)" />
     <Parameter Name="Itin" Parameter="itin" Type="System.String" DbType="NVarChar(50)" />
     <ElementType Name="GetOverrideResult">
-      <Column Name="Type" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MenuTypeName" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="MessageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RepeatMenu" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="Options" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="OptionList" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="RepeatMenu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
