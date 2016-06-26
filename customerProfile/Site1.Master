@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="customerProfile.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>IVR CPR - Rule Management</title>
+    
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            font-size: xx-large;
+        }
+        .newStyle1 {
+            background-color: #808080;
+        }
+    </style>
+    <link href="IVRCPR.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+        <span class="auto-style1">IVR CPR - Rule Management</span>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

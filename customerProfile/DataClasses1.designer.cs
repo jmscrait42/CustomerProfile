@@ -30,6 +30,21 @@ namespace customerProfile
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertPO(PO instance);
+    partial void UpdatePO(PO instance);
+    partial void DeletePO(PO instance);
+    partial void InsertRule(Rule instance);
+    partial void UpdateRule(Rule instance);
+    partial void DeleteRule(Rule instance);
+    partial void InsertRuleOperator(RuleOperator instance);
+    partial void UpdateRuleOperator(RuleOperator instance);
+    partial void DeleteRuleOperator(RuleOperator instance);
+    partial void InsertRuleMetric(RuleMetric instance);
+    partial void UpdateRuleMetric(RuleMetric instance);
+    partial void DeleteRuleMetric(RuleMetric instance);
+    partial void InsertMetric(Metric instance);
+    partial void UpdateMetric(Metric instance);
+    partial void DeleteMetric(Metric instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -62,11 +77,27 @@ namespace customerProfile
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<PO> POs
+		{
+			get
+			{
+				return this.GetTable<PO>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Rule> Rules
 		{
 			get
 			{
 				return this.GetTable<Rule>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RuleOperator> RuleOperators
+		{
+			get
+			{
+				return this.GetTable<RuleOperator>();
 			}
 		}
 		
@@ -78,56 +109,91 @@ namespace customerProfile
 			}
 		}
 		
+		public System.Data.Linq.Table<Metric> Metrics
+		{
+			get
+			{
+				return this.GetTable<Metric>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetOverride")]
 		public ISingleResult<GetOverrideResult> GetOverride([global::System.Data.Linq.Mapping.ParameterAttribute(Name="POS", DbType="NVarChar(3)")] string pOS, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Itin", DbType="NVarChar(50)")] string itin)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pOS, itin);
 			return ((ISingleResult<GetOverrideResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AddMetric")]
+		public int AddMetric([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MetricName", DbType="NVarChar(100)")] string metricName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), metricName);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.AddRule")]
+		public int AddRule([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleRank", DbType="Int")] System.Nullable<int> ruleRank, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSID", DbType="Int")] System.Nullable<int> pOSID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleLabel", DbType="NVarChar(100)")] string ruleLabel, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleDescription", DbType="NVarChar(400)")] string ruleDescription, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MetricID", DbType="Int")] System.Nullable<int> metricID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleOperatorID", DbType="Int")] System.Nullable<int> ruleOperatorID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MetricValue", DbType="Int")] System.Nullable<int> metricValue, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleStartDateTime", DbType="DateTime")] System.Nullable<System.DateTime> ruleStartDateTime, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleEndDateTime", DbType="DateTime")] System.Nullable<System.DateTime> ruleEndDateTime)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ruleRank, pOSID, ruleLabel, ruleDescription, metricID, ruleOperatorID, metricValue, ruleStartDateTime, ruleEndDateTime);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getRulesList")]
+		public ISingleResult<getRulesListResult> getRulesList()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<getRulesListResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.updateRules")]
+		public int updateRules([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleID", DbType="Int")] System.Nullable<int> ruleID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleRank", DbType="Int")] System.Nullable<int> ruleRank, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="POSCode", DbType="NVarChar(3)")] string pOSCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleLabel", DbType="NVarChar(100)")] string ruleLabel, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleDescription", DbType="NVarChar(400)")] string ruleDescription, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MetricName", DbType="NVarChar(100)")] string metricName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleOperatorName", DbType="NVarChar(50)")] string ruleOperatorName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MetricValue", DbType="Int")] System.Nullable<int> metricValue, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleStartDateTime", DbType="DateTime")] System.Nullable<System.DateTime> ruleStartDateTime, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RuleEndDateTime", DbType="DateTime")] System.Nullable<System.DateTime> ruleEndDateTime)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), ruleID, ruleRank, pOSCode, ruleLabel, ruleDescription, metricName, ruleOperatorName, metricValue, ruleStartDateTime, ruleEndDateTime);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rules")]
-	public partial class Rule
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.POS")]
+	public partial class PO : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
-		private System.Nullable<int> _RuleID;
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.Nullable<int> _RuleRank;
+		private int _POSID;
 		
 		private string _POSCode;
 		
-		public Rule()
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPOSIDChanging(int value);
+    partial void OnPOSIDChanged();
+    partial void OnPOSCodeChanging(string value);
+    partial void OnPOSCodeChanged();
+    #endregion
+		
+		public PO()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", DbType="Int")]
-		public System.Nullable<int> RuleID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int POSID
 		{
 			get
 			{
-				return this._RuleID;
+				return this._POSID;
 			}
 			set
 			{
-				if ((this._RuleID != value))
+				if ((this._POSID != value))
 				{
-					this._RuleID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleRank", DbType="Int")]
-		public System.Nullable<int> RuleRank
-		{
-			get
-			{
-				return this._RuleRank;
-			}
-			set
-			{
-				if ((this._RuleRank != value))
-				{
-					this._RuleRank = value;
+					this.OnPOSIDChanging(value);
+					this.SendPropertyChanging();
+					this._POSID = value;
+					this.SendPropertyChanged("POSID");
+					this.OnPOSIDChanged();
 				}
 			}
 		}
@@ -143,28 +209,87 @@ namespace customerProfile
 			{
 				if ((this._POSCode != value))
 				{
+					this.OnPOSCodeChanging(value);
+					this.SendPropertyChanging();
 					this._POSCode = value;
+					this.SendPropertyChanged("POSCode");
+					this.OnPOSCodeChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RuleMetric")]
-	public partial class RuleMetric
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rules")]
+	public partial class Rule : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
-		private System.Nullable<int> _RuleID;
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _Metric;
+		private int _RuleID;
 		
-		private System.Nullable<int> _MetricValue;
+		private int _RuleRank;
 		
-		public RuleMetric()
+		private int _POSID;
+		
+		private string _RuleLabel;
+		
+		private string _RuleDescription;
+		
+		private System.DateTime _RuleStartDateTime;
+		
+		private System.Nullable<System.DateTime> _RuleEndDateTime;
+		
+		private System.DateTime _RuleCreateDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRuleIDChanging(int value);
+    partial void OnRuleIDChanged();
+    partial void OnRuleRankChanging(int value);
+    partial void OnRuleRankChanged();
+    partial void OnPOSIDChanging(int value);
+    partial void OnPOSIDChanged();
+    partial void OnRuleLabelChanging(string value);
+    partial void OnRuleLabelChanged();
+    partial void OnRuleDescriptionChanging(string value);
+    partial void OnRuleDescriptionChanged();
+    partial void OnRuleStartDateTimeChanging(System.DateTime value);
+    partial void OnRuleStartDateTimeChanged();
+    partial void OnRuleEndDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnRuleEndDateTimeChanged();
+    partial void OnRuleCreateDateTimeChanging(System.DateTime value);
+    partial void OnRuleCreateDateTimeChanged();
+    #endregion
+		
+		public Rule()
 		{
+			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", DbType="Int")]
-		public System.Nullable<int> RuleID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RuleID
 		{
 			get
 			{
@@ -174,23 +299,375 @@ namespace customerProfile
 			{
 				if ((this._RuleID != value))
 				{
+					this.OnRuleIDChanging(value);
+					this.SendPropertyChanging();
 					this._RuleID = value;
+					this.SendPropertyChanged("RuleID");
+					this.OnRuleIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Metric", DbType="VarChar(100)")]
-		public string Metric
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleRank", DbType="Int NOT NULL")]
+		public int RuleRank
 		{
 			get
 			{
-				return this._Metric;
+				return this._RuleRank;
 			}
 			set
 			{
-				if ((this._Metric != value))
+				if ((this._RuleRank != value))
 				{
-					this._Metric = value;
+					this.OnRuleRankChanging(value);
+					this.SendPropertyChanging();
+					this._RuleRank = value;
+					this.SendPropertyChanged("RuleRank");
+					this.OnRuleRankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSID", DbType="Int NOT NULL")]
+		public int POSID
+		{
+			get
+			{
+				return this._POSID;
+			}
+			set
+			{
+				if ((this._POSID != value))
+				{
+					this.OnPOSIDChanging(value);
+					this.SendPropertyChanging();
+					this._POSID = value;
+					this.SendPropertyChanged("POSID");
+					this.OnPOSIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleLabel", DbType="NVarChar(100)")]
+		public string RuleLabel
+		{
+			get
+			{
+				return this._RuleLabel;
+			}
+			set
+			{
+				if ((this._RuleLabel != value))
+				{
+					this.OnRuleLabelChanging(value);
+					this.SendPropertyChanging();
+					this._RuleLabel = value;
+					this.SendPropertyChanged("RuleLabel");
+					this.OnRuleLabelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleDescription", DbType="NVarChar(400)")]
+		public string RuleDescription
+		{
+			get
+			{
+				return this._RuleDescription;
+			}
+			set
+			{
+				if ((this._RuleDescription != value))
+				{
+					this.OnRuleDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._RuleDescription = value;
+					this.SendPropertyChanged("RuleDescription");
+					this.OnRuleDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleStartDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime RuleStartDateTime
+		{
+			get
+			{
+				return this._RuleStartDateTime;
+			}
+			set
+			{
+				if ((this._RuleStartDateTime != value))
+				{
+					this.OnRuleStartDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._RuleStartDateTime = value;
+					this.SendPropertyChanged("RuleStartDateTime");
+					this.OnRuleStartDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleEndDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> RuleEndDateTime
+		{
+			get
+			{
+				return this._RuleEndDateTime;
+			}
+			set
+			{
+				if ((this._RuleEndDateTime != value))
+				{
+					this.OnRuleEndDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._RuleEndDateTime = value;
+					this.SendPropertyChanged("RuleEndDateTime");
+					this.OnRuleEndDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleCreateDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime RuleCreateDateTime
+		{
+			get
+			{
+				return this._RuleCreateDateTime;
+			}
+			set
+			{
+				if ((this._RuleCreateDateTime != value))
+				{
+					this.OnRuleCreateDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._RuleCreateDateTime = value;
+					this.SendPropertyChanged("RuleCreateDateTime");
+					this.OnRuleCreateDateTimeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RuleOperator")]
+	public partial class RuleOperator : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RuleOperatorID;
+		
+		private string _RuleOperatorName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRuleOperatorIDChanging(int value);
+    partial void OnRuleOperatorIDChanged();
+    partial void OnRuleOperatorNameChanging(string value);
+    partial void OnRuleOperatorNameChanged();
+    #endregion
+		
+		public RuleOperator()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleOperatorID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RuleOperatorID
+		{
+			get
+			{
+				return this._RuleOperatorID;
+			}
+			set
+			{
+				if ((this._RuleOperatorID != value))
+				{
+					this.OnRuleOperatorIDChanging(value);
+					this.SendPropertyChanging();
+					this._RuleOperatorID = value;
+					this.SendPropertyChanged("RuleOperatorID");
+					this.OnRuleOperatorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleOperatorName", DbType="NVarChar(50)")]
+		public string RuleOperatorName
+		{
+			get
+			{
+				return this._RuleOperatorName;
+			}
+			set
+			{
+				if ((this._RuleOperatorName != value))
+				{
+					this.OnRuleOperatorNameChanging(value);
+					this.SendPropertyChanging();
+					this._RuleOperatorName = value;
+					this.SendPropertyChanged("RuleOperatorName");
+					this.OnRuleOperatorNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RuleMetric")]
+	public partial class RuleMetric : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RuleMetricID;
+		
+		private int _RuleID;
+		
+		private int _MetricID;
+		
+		private int _RuleOperatorID;
+		
+		private System.Nullable<int> _MetricValue;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRuleMetricIDChanging(int value);
+    partial void OnRuleMetricIDChanged();
+    partial void OnRuleIDChanging(int value);
+    partial void OnRuleIDChanged();
+    partial void OnMetricIDChanging(int value);
+    partial void OnMetricIDChanged();
+    partial void OnRuleOperatorIDChanging(int value);
+    partial void OnRuleOperatorIDChanged();
+    partial void OnMetricValueChanging(System.Nullable<int> value);
+    partial void OnMetricValueChanged();
+    #endregion
+		
+		public RuleMetric()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleMetricID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RuleMetricID
+		{
+			get
+			{
+				return this._RuleMetricID;
+			}
+			set
+			{
+				if ((this._RuleMetricID != value))
+				{
+					this.OnRuleMetricIDChanging(value);
+					this.SendPropertyChanging();
+					this._RuleMetricID = value;
+					this.SendPropertyChanged("RuleMetricID");
+					this.OnRuleMetricIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", DbType="Int NOT NULL")]
+		public int RuleID
+		{
+			get
+			{
+				return this._RuleID;
+			}
+			set
+			{
+				if ((this._RuleID != value))
+				{
+					this.OnRuleIDChanging(value);
+					this.SendPropertyChanging();
+					this._RuleID = value;
+					this.SendPropertyChanged("RuleID");
+					this.OnRuleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetricID", DbType="Int NOT NULL")]
+		public int MetricID
+		{
+			get
+			{
+				return this._MetricID;
+			}
+			set
+			{
+				if ((this._MetricID != value))
+				{
+					this.OnMetricIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetricID = value;
+					this.SendPropertyChanged("MetricID");
+					this.OnMetricIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleOperatorID", DbType="Int NOT NULL")]
+		public int RuleOperatorID
+		{
+			get
+			{
+				return this._RuleOperatorID;
+			}
+			set
+			{
+				if ((this._RuleOperatorID != value))
+				{
+					this.OnRuleOperatorIDChanging(value);
+					this.SendPropertyChanging();
+					this._RuleOperatorID = value;
+					this.SendPropertyChanged("RuleOperatorID");
+					this.OnRuleOperatorIDChanged();
 				}
 			}
 		}
@@ -206,8 +683,118 @@ namespace customerProfile
 			{
 				if ((this._MetricValue != value))
 				{
+					this.OnMetricValueChanging(value);
+					this.SendPropertyChanging();
 					this._MetricValue = value;
+					this.SendPropertyChanged("MetricValue");
+					this.OnMetricValueChanged();
 				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Metric")]
+	public partial class Metric : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MetricID;
+		
+		private string _MetricName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMetricIDChanging(int value);
+    partial void OnMetricIDChanged();
+    partial void OnMetricNameChanging(string value);
+    partial void OnMetricNameChanged();
+    #endregion
+		
+		public Metric()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetricID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MetricID
+		{
+			get
+			{
+				return this._MetricID;
+			}
+			set
+			{
+				if ((this._MetricID != value))
+				{
+					this.OnMetricIDChanging(value);
+					this.SendPropertyChanging();
+					this._MetricID = value;
+					this.SendPropertyChanged("MetricID");
+					this.OnMetricIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetricName", DbType="NVarChar(100)")]
+		public string MetricName
+		{
+			get
+			{
+				return this._MetricName;
+			}
+			set
+			{
+				if ((this._MetricName != value))
+				{
+					this.OnMetricNameChanging(value);
+					this.SendPropertyChanging();
+					this._MetricName = value;
+					this.SendPropertyChanged("MetricName");
+					this.OnMetricNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -287,6 +874,194 @@ namespace customerProfile
 				if ((this._RepeatMenu != value))
 				{
 					this._RepeatMenu = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getRulesListResult
+	{
+		
+		private int _RuleID;
+		
+		private string _RuleLabel;
+		
+		private string _RuleDescription;
+		
+		private int _RuleRank;
+		
+		private string _POSCode;
+		
+		private string _MetricName;
+		
+		private string _RuleOperatorName;
+		
+		private System.Nullable<int> _MetricValue;
+		
+		private System.DateTime _RuleStartDateTime;
+		
+		private System.Nullable<System.DateTime> _RuleEndDateTime;
+		
+		public getRulesListResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", DbType="Int NOT NULL")]
+		public int RuleID
+		{
+			get
+			{
+				return this._RuleID;
+			}
+			set
+			{
+				if ((this._RuleID != value))
+				{
+					this._RuleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleLabel", DbType="NVarChar(100)")]
+		public string RuleLabel
+		{
+			get
+			{
+				return this._RuleLabel;
+			}
+			set
+			{
+				if ((this._RuleLabel != value))
+				{
+					this._RuleLabel = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleDescription", DbType="NVarChar(400)")]
+		public string RuleDescription
+		{
+			get
+			{
+				return this._RuleDescription;
+			}
+			set
+			{
+				if ((this._RuleDescription != value))
+				{
+					this._RuleDescription = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleRank", DbType="Int NOT NULL")]
+		public int RuleRank
+		{
+			get
+			{
+				return this._RuleRank;
+			}
+			set
+			{
+				if ((this._RuleRank != value))
+				{
+					this._RuleRank = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSCode", DbType="NVarChar(3)")]
+		public string POSCode
+		{
+			get
+			{
+				return this._POSCode;
+			}
+			set
+			{
+				if ((this._POSCode != value))
+				{
+					this._POSCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetricName", DbType="NVarChar(100)")]
+		public string MetricName
+		{
+			get
+			{
+				return this._MetricName;
+			}
+			set
+			{
+				if ((this._MetricName != value))
+				{
+					this._MetricName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleOperatorName", DbType="NVarChar(50)")]
+		public string RuleOperatorName
+		{
+			get
+			{
+				return this._RuleOperatorName;
+			}
+			set
+			{
+				if ((this._RuleOperatorName != value))
+				{
+					this._RuleOperatorName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetricValue", DbType="Int")]
+		public System.Nullable<int> MetricValue
+		{
+			get
+			{
+				return this._MetricValue;
+			}
+			set
+			{
+				if ((this._MetricValue != value))
+				{
+					this._MetricValue = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleStartDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime RuleStartDateTime
+		{
+			get
+			{
+				return this._RuleStartDateTime;
+			}
+			set
+			{
+				if ((this._RuleStartDateTime != value))
+				{
+					this._RuleStartDateTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleEndDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> RuleEndDateTime
+		{
+			get
+			{
+				return this._RuleEndDateTime;
+			}
+			set
+			{
+				if ((this._RuleEndDateTime != value))
+				{
+					this._RuleEndDateTime = value;
 				}
 			}
 		}
