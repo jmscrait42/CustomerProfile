@@ -62,11 +62,153 @@ namespace customerProfile
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Rule> Rules
+		{
+			get
+			{
+				return this.GetTable<Rule>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RuleMetric> RuleMetrics
+		{
+			get
+			{
+				return this.GetTable<RuleMetric>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetOverride")]
 		public ISingleResult<GetOverrideResult> GetOverride([global::System.Data.Linq.Mapping.ParameterAttribute(Name="POS", DbType="NVarChar(3)")] string pOS, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Itin", DbType="NVarChar(50)")] string itin)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pOS, itin);
 			return ((ISingleResult<GetOverrideResult>)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Rules")]
+	public partial class Rule
+	{
+		
+		private System.Nullable<int> _RuleID;
+		
+		private System.Nullable<int> _RuleRank;
+		
+		private string _POSCode;
+		
+		public Rule()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", DbType="Int")]
+		public System.Nullable<int> RuleID
+		{
+			get
+			{
+				return this._RuleID;
+			}
+			set
+			{
+				if ((this._RuleID != value))
+				{
+					this._RuleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleRank", DbType="Int")]
+		public System.Nullable<int> RuleRank
+		{
+			get
+			{
+				return this._RuleRank;
+			}
+			set
+			{
+				if ((this._RuleRank != value))
+				{
+					this._RuleRank = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSCode", DbType="NVarChar(3)")]
+		public string POSCode
+		{
+			get
+			{
+				return this._POSCode;
+			}
+			set
+			{
+				if ((this._POSCode != value))
+				{
+					this._POSCode = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RuleMetric")]
+	public partial class RuleMetric
+	{
+		
+		private System.Nullable<int> _RuleID;
+		
+		private string _Metric;
+		
+		private System.Nullable<int> _MetricValue;
+		
+		public RuleMetric()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RuleID", DbType="Int")]
+		public System.Nullable<int> RuleID
+		{
+			get
+			{
+				return this._RuleID;
+			}
+			set
+			{
+				if ((this._RuleID != value))
+				{
+					this._RuleID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Metric", DbType="VarChar(100)")]
+		public string Metric
+		{
+			get
+			{
+				return this._Metric;
+			}
+			set
+			{
+				if ((this._Metric != value))
+				{
+					this._Metric = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MetricValue", DbType="Int")]
+		public System.Nullable<int> MetricValue
+		{
+			get
+			{
+				return this._MetricValue;
+			}
+			set
+			{
+				if ((this._MetricValue != value))
+				{
+					this._MetricValue = value;
+				}
+			}
 		}
 	}
 	
