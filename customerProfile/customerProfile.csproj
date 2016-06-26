@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="ControlAddRule.ascx" />
     <Content Include="images\add.png" />
+    <Content Include="images\delete.png" />
     <Content Include="images\edit.jpg" />
     <Content Include="images\edit.png" />
     <Content Include="IVRCPR.css" />

@@ -24,7 +24,8 @@ namespace customerProfile
         protected void Button1_Click(object sender, EventArgs e)
         {
             GridView1.Visible = false;
-            FormView1.Visible = true;
+            //FormView1.Visible = true;
+            ControlAddRule1.Visible = true;
             Button1.Visible = false;
         }
 
@@ -46,7 +47,7 @@ namespace customerProfile
 
         protected void InsertButton_Click(object sender, EventArgs e)
         {
-            FormView1.Visible = false;
+   
        
             GridView1.Visible = true;
             Button1.Visible = true;
@@ -55,7 +56,6 @@ namespace customerProfile
 
         protected void InsertCancelButton_Click(object sender, EventArgs e)
         {
-            FormView1.Visible = false;
 
             GridView1.Visible = true;
             Button1.Visible = true;
