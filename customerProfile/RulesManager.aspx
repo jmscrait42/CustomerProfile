@@ -2,6 +2,11 @@
 <%@ Register assembly="System.Web.Entity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" namespace="System.Web.UI.WebControls" tagprefix="asp" %>
 <%@ Register src="ControlAddRule.ascx" tagname="ControlAddRule" tagprefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .auto-style3 {
+            z-index: -1;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
@@ -11,7 +16,7 @@
     <asp:Panel ID="Panel1" runat="server">
         <uc1:ControlAddRule ID="ControlAddRule1" runat="server" Visible="False" />
     </asp:Panel>
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="RuleID" DataSourceID="dsRuleList" EnableModelValidation="True" style="z-index: -1" BorderStyle="Inset" BorderWidth="5px" Width="1275px">
+    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="RuleID" DataSourceID="dsRuleList" EnableModelValidation="True" BorderStyle="Inset" BorderWidth="5px" Width="1299px" CssClass="auto-style3">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:CommandField ButtonType="Image" EditImageUrl="~/images/edit.png" ShowEditButton="True" DeleteImageUrl="~/images/delete.png" ShowDeleteButton="True" />
@@ -29,6 +34,7 @@
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("POSCode") %>'></asp:Label>
                 </ItemTemplate>
+                <ItemStyle Width="80px" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Metric" SortExpression="MetricName">
                 <EditItemTemplate>
@@ -52,7 +58,9 @@
                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("RuleOperatorName") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="MetricValue" HeaderText="Value" SortExpression="MetricValue" />
+            <asp:BoundField DataField="MetricValue" HeaderText="Value" SortExpression="MetricValue" >
+            <ItemStyle Width="80px" />
+            </asp:BoundField>
             <asp:TemplateField HeaderText="Start Date" SortExpression="RuleStartDateTime">
                 <EditItemTemplate>
                     <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" SelectedDate='<%# Bind("RuleStartDateTime") %>' Width="200px">
@@ -91,7 +99,7 @@
                 <EditItemTemplate>
                     <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="dsMenu" DataTextField="MenuTemplateName" DataValueField="MenuTemplateName" SelectedValue='<%# Bind("MenuTemplateName") %>'>
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="dsMenu" runat="server" ConnectionString="<%$ ConnectionStrings:IVRCPRConnectionString %>" SelectCommand="SELECT [MenuTemplateName] FROM [MenuTemplate]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="dsMenu" runat="server" ConnectionString="<%$ ConnectionStrings:IVRCPRConnectionString %>" SelectCommand="SELECT [MenuTemplateName] FROM [MenuTemplate] ORDER BY [MenuTemplateName]"></asp:SqlDataSource>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label6" runat="server" Text='<%# Bind("MenuTemplateName") %>'></asp:Label>

@@ -38,10 +38,10 @@
 <table class="auto-style1">
     <tr>
         <td class="auto-style2">
-            <asp:Label ID="StartDate" runat="server" Text="Start Date"></asp:Label>
+            <asp:Label ID="StartDate" runat="server" Text="Start Date" Font-Size="Large"></asp:Label>
         </td>
         <td>
-            <asp:Label ID="EndDate" runat="server" Text="End  Date"></asp:Label>
+            <asp:Label ID="EndDate" runat="server" Text="End  Date" Font-Size="Large"></asp:Label>
         </td>
     </tr>
     <tr>
@@ -75,7 +75,7 @@
 <asp:Label ID="MenuTemplate" runat="server" Text="Menu Template"></asp:Label>
 &nbsp;<asp:DropDownList ID="ddlMenu" runat="server" DataSourceID="dsMenu" DataTextField="MenuTemplateName" DataValueField="MenuTemplateName">
 </asp:DropDownList>
-<asp:SqlDataSource ID="dsMenu" runat="server" ConnectionString="<%$ ConnectionStrings:IVRCPRConnectionString %>" SelectCommand="SELECT [MenuTemplateName] FROM [MenuTemplate]"></asp:SqlDataSource>
+<asp:SqlDataSource ID="dsMenu" runat="server" ConnectionString="<%$ ConnectionStrings:IVRCPRConnectionString %>" SelectCommand="SELECT [MenuTemplateName] FROM [MenuTemplate] ORDER BY [MenuTemplateName]"></asp:SqlDataSource>
 <br />
 <br />
 <asp:Button ID="Button1" runat="server" Text="Add Rule" OnClick="Button1_Click" />
